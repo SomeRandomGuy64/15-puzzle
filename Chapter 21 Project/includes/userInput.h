@@ -1,13 +1,10 @@
 #pragma once
 
 #include <iostream>
+#include <conio.h>
 #include "command.h"
 
 namespace UserInput {
-    void ignoreLine() {
-	    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    }
-
     bool isValidInput(char input) {
         return(
             input == 'w' ||
@@ -19,15 +16,7 @@ namespace UserInput {
     }
 
     char getCharacter() {
-        char input{};
-
-        do {
-            std::cin >> input;
-            ignoreLine();
-
-        } while (!isValidInput(input));
-
-        return input;
+        return static_cast<char>(_getch());
     }
 
 	Command getCommandFromUser() {

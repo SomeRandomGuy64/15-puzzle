@@ -123,6 +123,21 @@ int getColSize() {
     return getSize("column");
 }
 
+char getConfirmation() {
+    // Ask for confirmation, if input is invalid just assume the user pressed 'n'
+    std::cout << "\nAre you sure you want to quit? (y/n): ";
+    char confirmation{};
+    std::cin >> confirmation;
+
+    if (confirmation != 'y' && confirmation != 'n') {
+        ignoreLine();
+        clearFailedExtraction();
+        confirmation = 'n';
+    }
+
+    return confirmation;
+}
+
 int main() {
     Board board{ getRowSize(), getColSize() };
 
@@ -135,10 +150,14 @@ int main() {
         }
 
         Command input{ UserInput::getCommandFromUser() };
+        char confirmation{ getConfirmation() };
 
-        if (input.getCommand() == Command::Quit) {
+        if (input.getCommand() == Command::Quit && confirmation == 'y') {
             std::cout << "\n\n\nBye!\n\n\n";
             break;
+        }
+        else if (input.getCommand() == Command::Quit && confirmation == 'n') {
+            continue;
         }
         else {
             board.moveTile(input);

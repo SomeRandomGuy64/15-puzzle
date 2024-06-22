@@ -10,10 +10,11 @@ Point::Point(int x, int y)
 
 Point Point::getAdjacentPoint(const Command& command) {
 	switch (command.getCommand()) {
-	case Command::Up:		return Point(m_x, --m_y);
-	case Command::Down:		return Point(m_x, ++m_y);
-	case Command::Left:		return Point(--m_x, m_y);
-	case Command::Right:	return Point(++m_x, m_y);
+	case Command::Up:			return Point(m_x, --m_y);
+	case Command::Down:			return Point(m_x, ++m_y);
+	case Command::Left:			return Point(--m_x, m_y);
+	case Command::Right:		return Point(++m_x, m_y);
+	case Command::MaxOptions:	return *this;
 	}
 
 	assert(0 && "Unsupported option was passed!");
