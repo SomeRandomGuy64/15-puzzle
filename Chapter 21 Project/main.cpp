@@ -150,13 +150,12 @@ int main() {
         }
 
         Command input{ UserInput::getCommandFromUser() };
-        char confirmation{ getConfirmation() };
 
-        if (input.getCommand() == Command::Quit && confirmation == 'y') {
+        if (input.getCommand() == Command::Quit && getConfirmation() == 'y') {
             std::cout << "\n\n\nBye!\n\n\n";
             break;
         }
-        else if (input.getCommand() == Command::Quit && confirmation == 'n') {
+        else if (input.getCommand() == Command::Quit) {
             continue;
         }
         else {
